@@ -4,9 +4,6 @@ class Solution:
         rows = len(matrix)
         cols = len(matrix[0])
 
-        dx = [0, 1, 0, -1]
-        dy = [1, 0, -1, 0]
-
         answer = []
         visitied = [[0] * cols for _ in range(rows)]
 
@@ -24,7 +21,6 @@ class Solution:
 
 
             visitied[r][c] = 1
-            # print(visitied, matrix, matrix[r][c], d)
             answer.append(matrix[r][c])
             dfs(r + dx, c + dy, (d + 4) % 4)
             return
