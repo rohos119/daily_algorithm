@@ -1,4 +1,4 @@
-# start : 2353
+# start : 2353 end : 0027
 # 문제정의 : list에 있는 단어에서 가장 긴 공통된 접두사를 찾아라
 # input : 1 str 200, 1 str[i].length 200
 # output : common prefix else ""
