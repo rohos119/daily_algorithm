@@ -30,7 +30,7 @@ class Solution:
                 x = x+direction[b[1]][0]
                 y = y+direction[b[1]][1]
                 if x<0 or y>=cols or y<0 :
-                    b[1] = 'U'
+                    break
                 if x == rows :
                     answer[i] = y
                     break
