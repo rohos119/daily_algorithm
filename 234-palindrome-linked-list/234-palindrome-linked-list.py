@@ -18,18 +18,18 @@ class Solution:
         
         # easy way -> o(2N) 
         # python의 reversed를 활용 한다.
-#         node = head
-#         val = []
-#         while node != None :
-#             val.append(node.val)
-#             node = node.next
-        
-#         return True if val == list(reversed(val)) else False
         node = head
-        val_reverse = deque()
         val = []
         while node != None :
-            val_reverse.appendleft(node.val)
             val.append(node.val)
             node = node.next
-        return True if deque(val) == val_reverse else False 
+        
+        return True if val == list(reversed(val)) else False
+        # node = head
+        # val_reverse = deque()
+        # val = []
+        # while node != None :
+        #     val_reverse.appendleft(node.val)
+        #     val.append(node.val)
+        #     node = node.next
+        # return True if deque(val) == val_reverse else False 
