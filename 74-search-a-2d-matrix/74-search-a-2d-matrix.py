@@ -47,7 +47,7 @@ class Solution:
         # set으로 matrix 바꿔서 big o 조금이라도 줄이는 방법
         # 이거 썼을때는 O(logm + n)
         if rp1==rp2 :
-            if target in set(matrix[rp1]) :
+            if target in matrix[rp1] :
                 return True
         else :
             if rp1<=0 and matrix[rp1][0] <= target and target <= matrix[rp1][n-1] :
