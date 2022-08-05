@@ -49,18 +49,19 @@ class Solution:
         if rp1==rp2 :
             if target in set(matrix[rp1]) :
                 return True
-        elif rp1<0 and matrix[rp1][0] <= target and target <= matrix[rp1][n-1] :
-            if target in set(matrix[rp1]) :
-                return True
-            else :
-                return False
-        elif rp2<m and matrix[rp2][0] <= target and target <= matrix[rp2][n-1] :
-            if target in set(matrix[rp2]) :
-                return True
-            else :
-                return False
         else :
-            return False
+            if rp1<=0 and matrix[rp1][0] <= target and target <= matrix[rp1][n-1] :
+                if target in set(matrix[rp1]) :
+                    return True
+                else :
+                    return False
+            elif rp2<m and matrix[rp2][0] <= target and target <= matrix[rp2][n-1] :
+                if target in set(matrix[rp2]) :
+                    return True
+                else :
+                    return False
+            else :
+                return False
         
         # 이렇게 하면 완벽한 o(logm + logn)
 #         if rp1==rp2 :
