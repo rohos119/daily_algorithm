@@ -46,42 +46,46 @@ class Solution:
         
         # set으로 matrix 바꿔서 big o 조금이라도 줄이는 방법
         # 이거 썼을때는 O(logm + n)
-        if rp1==rp2 :
-            if target in matrix[rp1] :
-                return True
-        else :
-            if rp1<=0 and matrix[rp1][0] <= target and target <= matrix[rp1][n-1] :
-                if target in set(matrix[rp1]) :
-                    return True
-                else :
-                    return False
-            elif rp2<m and matrix[rp2][0] <= target and target <= matrix[rp2][n-1] :
-                if target in set(matrix[rp2]) :
-                    return True
-                else :
-                    return False
-            else :
-                return False
+        # if rp1==rp2 :
+        #     if target in matrix[rp1] :
+        #         return True
+        # else :
+        #     if rp1<=0 and matrix[rp1][0] <= target and target <= matrix[rp1][n-1] :
+        #         if target in set(matrix[rp1]) :
+        #             return True
+        #         else :
+        #             return False
+        #     elif rp2<m and matrix[rp2][0] <= target and target <= matrix[rp2][n-1] :
+        #         if target in set(matrix[rp2]) :
+        #             return True
+        #         else :
+        #             return False
+        #     else :
+        #         return False
         
         # 이렇게 하면 완벽한 o(logm + logn)
-#         if rp1==rp2 :
-#             matrix = matrix[rp1]
-#         elif rp1<=0 and matrix[rp1][0] <= target and target <= matrix[rp1][n-1] :
-#             matrix = matrix[rp1]
-#         elif rp2<m and matrix[rp2][0] <= target and target <= matrix[rp2][n-1] :
-#             matrix = matrix[rp2]
-#         else :
-#             return False
+        top,bottom =rp1, rp2
+        if (top == bottom):
+            row = matrix[top]
+        else:
+            if (0 <= bottom) and (matrix[bottom][0] <= target <= matrix[bottom][n - 1]):
+                row = matrix[bottom]
+            elif (top < m) and (matrix[top][0] <= target <= matrix[top][n - 1]):
+                row = matrix[top]
+            else:
+                return False
         
-#         l,r = 0, len(matrix)-1
-#         mid = (l+r)//2
-#         while l<r :
-#             mid = (l+r)//2
-#             if matrix[mid] == target :
-#                 return True
-#             elif matrix[mid] > target :
-#                 l = mid
-#             else :
-#                 r = mid
-#         return False
+        # Find the target in the row
+        L = 0
+        R = n - 1
+        while(L <= R):
+            mid = (L + R) >> 1
+            if (row[mid] == target):
+                return True
+            elif (row[mid] < target):
+                L = mid + 1
+            else:
+                R = mid - 1
+        
+        return (0 <= L < n) and (row[L] == target)
             
