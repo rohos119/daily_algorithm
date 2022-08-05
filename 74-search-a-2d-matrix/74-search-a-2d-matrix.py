@@ -43,7 +43,9 @@ class Solution:
                 rp2 = mid - 1
             else:
                 rp1 = mid + 1
-                
+        
+        # set으로 matrix 바꿔서 big o 조금이라도 줄이는 방법
+        # 이거 썼을때는 O(logm + n)
         if rp1==rp2 :
             if target in set(matrix[rp1]) :
                 return True
@@ -59,4 +61,26 @@ class Solution:
                 return False
         else :
             return False
+        
+        # 이렇게 하면 완벽한 o(logm + logn)
+#         if rp1==rp2 :
+#             matrix = matrix[rp1]
+#         elif rp1<=0 and matrix[rp1][0] <= target and target <= matrix[rp1][n-1] :
+#             matrix = matrix[rp1]
+#         elif rp2<m and matrix[rp2][0] <= target and target <= matrix[rp2][n-1] :
+#             matrix = matrix[rp2]
+#         else :
+#             return False
+        
+#         l,r = 0, len(matrix)-1
+#         mid = (l+r)//2
+#         while l<r :
+#             mid = (l+r)//2
+#             if matrix[mid] == target :
+#                 return True
+#             elif matrix[mid] > target :
+#                 l = mid
+#             else :
+#                 r = mid
+#         return False
             
