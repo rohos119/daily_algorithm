@@ -51,12 +51,12 @@ class Solution:
                 return True
         else :
             if rp1<=0 and matrix[rp1][0] <= target and target <= matrix[rp1][n-1] :
-                if target in set(matrix[rp1]) :
+                if target in matrix[rp1] :
                     return True
                 else :
                     return False
             elif rp2<m and matrix[rp2][0] <= target and target <= matrix[rp2][n-1] :
-                if target in set(matrix[rp2]) :
+                if target in matrix[rp2] :
                     return True
                 else :
                     return False
