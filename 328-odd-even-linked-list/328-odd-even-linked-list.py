@@ -24,6 +24,7 @@ class Solution:
             curr = curr.next
             end = end.next
             jumps -= 1
-			
+	    
+        
         return head
         
