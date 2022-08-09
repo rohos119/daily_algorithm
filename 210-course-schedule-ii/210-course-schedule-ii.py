@@ -32,7 +32,6 @@ class Solution:
         
         if len(answer) != numCourses :
             return []
-        
         return answer
         
         
