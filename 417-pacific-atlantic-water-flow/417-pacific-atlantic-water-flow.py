@@ -1,5 +1,3 @@
-
-# 문제정의 : 높이값이 주어진 m*n 에서, 물이 양옆에 
 class Solution:
     def pacificAtlantic(self, heights: List[List[int]]) -> List[List[int]]:
         pac, atl = set(), set()
@@ -38,4 +36,3 @@ class Solution:
                 
                 if heights[r][c] >= heights[i][j] and (r, c) not in pac:
                     self.dfs(r, c, heights, pac)
-        
