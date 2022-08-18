@@ -4,6 +4,7 @@
 ## Beom's 매일 매일 기록하는 알고리즘 
 
 - ('22.7.16 ~ '22.7.23) 코로나로 인해 못함 ....ㅠㅠ
+- ('22.8.17) 차 수리로 인해 못함...ㅠ
 
 
 [![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=rohos119)](https://github.com/anuraghazra/github-readme-stats)
