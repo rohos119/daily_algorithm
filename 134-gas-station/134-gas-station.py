@@ -7,20 +7,19 @@ class Solution:
         # logic
         # 왜 greedy 접근법일까?
         # 최적해를 보장한다? 어떻게 -> 시작점에서 더하고, cost를 빼고 이 과정이 최적해인가?
-        
-        
-        startIndex = 0
-        current = 0
-        
-        if sum(gas) < sum(cost):
+        tank = 0
+        for i in range(len(gas)):
+            tank += gas[i] - cost[i]
+        if tank < 0:
             return -1
-        
-        n = len(gas)
-        
-        for i in range(n):
-            current += gas[i] - cost[i]
-            if current < 0:
-                startIndex = i + 1
-                current = 0
-                
-        return startIndex
+
+        start = 0
+        extra = 0
+        for i in range(len(gas)):
+            gain = gas[i] - cost[i]
+            if extra + gain < 0:
+                start = i + 1
+                extra = 0
+            else:
+                extra += gain
+        return start
