@@ -4,21 +4,23 @@
 # output : 순회 가능한 index -> int / 없으면 -1
 class Solution:
     def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
-        
         # logic
         # 왜 greedy 접근법일까?
         # 최적해를 보장한다? 어떻게 -> 시작점에서 더하고, cost를 빼고 이 과정이 최적해인가?
         
-        first_station = 0
-        available_gas = 0
-        gas_cost_diff = 0
-        for i in range(len(gas)):
-            gas_cost_diff = gas_cost_diff + gas[i] - cost[i]
-            available_gas = available_gas + gas[i] - cost[i]
-            if available_gas < 0:
-                available_gas = 0
-                first_station = i + 1
-        if gas_cost_diff >= 0:
-            return first_station
-        else:
+        
+        startIndex = 0
+        current = 0
+        
+        if sum(gas) < sum(cost):
             return -1
+        
+        n = len(gas)
+        
+        for i in range(n):
+            current += gas[i] - cost[i]
+            if current < 0:
+                startIndex = i + 1
+                current = 0
+                
+        return startIndex
