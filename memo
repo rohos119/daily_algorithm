@@ -1,0 +1,16 @@
+import asyncio
+
+async def udp_server():
+    # Create a UDP socket
+    transport, protocol = await asyncio.get_running_loop().create_datagram_endpoint(
+        lambda: asyncio.Protocol(), local_addr=('0.0.0.0', 0))
+    
+    # Print the bound address
+    print(f"Server listening on {transport.get_extra_info('sockname')}")
+    
+    # Wait for incoming messages
+    while True:
+        data, addr = await transport.recvfrom(1024)
+        print(f"Received {data.decode()} from {addr}")
+
+async def udp_cl
