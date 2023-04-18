@@ -13,4 +13,33 @@ async def udp_server():
         data, addr = await transport.recvfrom(1024)
         print(f"Received {data.decode()} from {addr}")
 
-async def udp_cl
+async def udp_client(ip, port):
+    # Create a UDP socket
+    transport, protocol = await asyncio.get_running_loop().create_datagram_endpoint(
+        lambda: asyncio.Protocol(), remote_addr=(ip, port))
+    
+    # Send a message
+    message = f"Hello from {ip}:{port}"
+    transport.sendto(message.encode())
+    print(f"Sent {message} to {ip}:{port}")
+    
+    # Close the socket
+    transport.close()
+
+async def main():
+    server_task = asyncio.create_task(udp_server())
+    client_tasks = []
+    ips = ['192.168.0.10', '192.168.0.11', '192.168.0.12', '192.168.0.13', '192.168.0.14']
+    ports = [5014, 5015, 5016, 5017, 5018]
+    
+    # Create tasks for each UDP client
+    for ip, port in zip(ips, ports):
+        client_tasks.append(asyncio.create_task(udp_client(ip, port)))
+        
+    # Wait for all tasks to complete
+    await asyncio.gather(*client_tasks)
+    server_task.cancel()
+
+# Run the test code
+asyncio.run(main())
+
