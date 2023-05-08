@@ -43,3 +43,31 @@ async def main():
 # Run the test code
 asyncio.run(main())
 
+from PyQt5.QtWidgets import QApplication, QFrame, QGridLayout
+from PyQt5.QtCore import QTimer, Qt
+
+class GridBorder(QFrame):
+    def __init__(self):
+        super().__init__()
+        self.setStyleSheet('border: 1px solid rgb(255,255,255);')
+        self.timer = QTimer(self)
+        self.timer.timeout.connect(self.rotate_color)
+        self.timer.start(100)  # Change color every 100 ms
+        
+    def rotate_color(self):
+        color = self.palette().color(QFrame.Background)
+        r, g, b = color.red(), color.green(), color.blue()
+        if r == 0 and g == 0 and b == 0:
+            self.timer.stop()
+        else:
+            self.setStyleSheet(f'border: 1px solid rgb({255-r},{255-g},{255-b});')
+
+app = QApplication([])
+grid = QGridLayout()
+border = GridBorder()
+grid.addWidget(border, 0, 0)
+app.setStyle('Fusion')
+app.exec_()
+
+
+
