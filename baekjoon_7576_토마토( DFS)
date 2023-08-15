@@ -1,0 +1,39 @@
+import sys
+from collections import deque
+
+if __name__ == '__main__' :
+    M,N = map(int,sys.stdin.readline().rstrip().split())
+    t_box = [list(map(int,sys.stdin.readline().rstrip().split())) for _ in range(N)]
+    t_visit = [[0]*M for _ in range(N)]
+
+    total = M*N
+    day = 1
+    t_check_que = deque()
+    t_check_count = 0
+    # 좌 우 상 하
+    dist = [(0,-1),(0,1),(1,0),(-1,0)]
+
+    for r in range(N) :
+        for c in range(M) :
+            if t_box[r][c] == -1 :
+                total -= 1
+                t_visit[r][c]
+            elif t_box[r][c] == 1 :
+                t_check_count += 1
+                t_check_que.append((r,c,1))
+                t_visit[r][c] = 1
+
+    while t_check_que :
+        x,y,d = t_check_que.popleft()
+        for dx,dy in dist :
+            if 0 <= x+dx < N and 0 <= y+dy < M and t_box[x+dx][y+dy] == 0 :
+                if t_visit[x+dx][y+dy] == 0:
+                    t_visit[x + dx][y + dy] = d
+                    day = d + 1
+                    t_check_que.append((x+dx,y+dy,d+1))
+                    t_check_count +=1
+
+    if total != t_check_count :
+        print(-1)
+    else :
+        print(day-1)
